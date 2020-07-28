@@ -1,0 +1,224 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          description: "use to deploy on tomcat vm"
+          id: "deployer_user"
+          password: "{AQAAABAAAAAQ0Uv1Cgi2F8Tnuc1RgmulNz5ndoVKTVv8DbzhgJtwJlo=}"
+          scope: GLOBAL
+          username: "deployer"
+      - basicSSHUserPrivateKey:
+          id: "Github-Jenkins-Backup"
+          privateKeySource:
+            directEntry:
+              privateKey: "{AQAAABAAAAGg3QhOIogIxIKTot7EWC0prT3LgydBxvLs3NMv7iuD/M7kUE6PfZ33BtKwVPcGsmPfCFiDse8s3gzqk42+QnOgf5CP29I/erZImpaXQ+jS1vXFFRGwgutffHGXkVUqmwF8RFwSOvagf58xCW62mbDUlipGGq6T0SnfAZfA2kJ2OmxXONHQSlF47wmaLQvpcxkA/Xp/I1Tkeqaxb8kZ1i7euxhV6t8snSyxwrwojIdfe9SKGwEwAcRI6CDOgi5J9DK2ZjD2buMnsAenmLdo/rjzXG8SDkIxdEnhQNcPmBKEFofXJQP83oeVuWABCrASep39WszdvJxz3zjfd3tvNNocMs5Rc3e17/dXX6BTIdwTkMEiAuCo4XReYbhM3+HCI9DJ1xkL7IiDazbqpthQgyn21mxOwThbwDnSgFv9TpImjk2fDSxpuYiQSJG6z4j4lg6+xz0ALK1PsB98MHCndrJB15M0IuV1lZkzQGtt0LD4JiWKE5WcfRRu5j59jNJWndQA20CjOBNmmlmhHXT7ml7uobcIF7d6fNa+2lDJTDWwQT5EBcve6BJL3ct64iAT9Tom}"
+          scope: GLOBAL
+          username: "jenkins"
+      - usernamePassword:
+          description: "github connection"
+          id: "jiquemen"
+          password: "{AQAAABAAAAAQ4x+GmhJHvnniyboI0oGyGk/ikqROy8o0HeRbC/rUt9g=}"
+          scope: GLOBAL
+          username: "jiquemen"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "master"
+  labelString: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        properties:
+        - "apiToken"
+        - favoriting:
+            autofavoriteEnabled: true
+        - "mailer"
+        - "favorite"
+        - preferredProvider:
+            providerId: "default"
+  slaveAgentPort: -1
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - buildPipeline:
+      alwaysAllowManualTrigger: false
+      buildCard: "standardBuildCard"
+      columnHeaders: "simpleColumnHeader"
+      gridBuilder:
+        downstream:
+          firstJob: "My_First_Maven_Build"
+      name: "Pipeline 1"
+      noOfDisplayedBuilds: "1"
+      refreshFrequency: 3
+      rowHeaders: "simpleRowHeader"
+      showPipelineDefinitionHeader: false
+      showPipelineParameters: false
+      showPipelineParametersInHeaders: false
+      triggerOnlyLatestJob: false
+  - buildPipeline:
+      alwaysAllowManualTrigger: false
+      buildCard: "standardBuildCard"
+      columnHeaders: "nullColumnHeader"
+      gridBuilder:
+        downstream:
+          firstJob: "DeleteBuildHistory-Free"
+      name: "Vista 1"
+      noOfDisplayedBuilds: "1"
+      refreshFrequency: 3
+      rowHeaders: "simpleRowHeader"
+      showPipelineDefinitionHeader: false
+      showPipelineParameters: false
+      showPipelineParametersInHeaders: false
+      triggerOnlyLatestJob: false
+  - all:
+      name: "all"
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      name: "cicd"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedSignatures:
+    - "method hudson.model.Item getName"
+    - "method hudson.model.ItemGroup getAllItems java.lang.Class"
+    - "method hudson.model.ItemGroup getItem java.lang.String"
+    - "method hudson.model.Job getBuilds hudson.model.Fingerprint$RangeSet"
+    - "method hudson.model.Job getLastBuild"
+    - "method hudson.model.Run getNumber"
+    - "staticMethod hudson.model.Fingerprint$RangeSet fromString java.lang.String\
+      \ boolean"
+    - "staticMethod jenkins.model.Jenkins getInstance"
+unclassified:
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildStepOperation:
+    enabled: false
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
+  extendedEmailPublisher:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: 0
+    precedenceBulk: false
+    useSsl: false
+    watchingEnabled: false
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://54.88.241.226:8080/github-webhook/"
+  gitSCM:
+    createAccountBasedOnEmail: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalDefaultFlowDurabilityLevel:
+    durabilityHint: PERFORMANCE_OPTIMIZED
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      name: "shared-library"
+      retriever: "modernSCM"
+  groovy:
+    installations:
+    - name: "groovy"
+      properties:
+      - installSource:
+          installers:
+          - groovyInstaller:
+              id: "2.5.6"
+  location:
+    adminAddress: "Dirección no configurada todavía <nobody@nowhere>"
+    url: "http://54.88.241.226:8080/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "github"
+  groovyInstallation:
+    installations:
+    - name: "groovy"
+      properties:
+      - installSource:
+          installers:
+          - groovyInstaller:
+              id: "2.5.6"
+  jdk:
+    installations:
+    - home: "/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64"
+      name: "JAVA_HOME"
+  maven:
+    installations:
+    - home: "/opt/maven"
+      name: "M2_HOME"
+    - name: "mvn3"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.5.4"
