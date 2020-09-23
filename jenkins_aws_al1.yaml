@@ -22,7 +22,7 @@ credentials:
           scope: GLOBAL
           username: "jiquemen"
 jenkins:
-  systemMessage: "Jenkins configurado por Jiquemen utilizando Jenkins Configuration as Code plugin\n\n"
+  systemMessage: "Jenkins configurado por Jimmy Quejada utilizando Jenkins Configuration as Code plugin\n\n"
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
