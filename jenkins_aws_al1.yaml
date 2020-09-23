@@ -113,14 +113,14 @@ jenkins:
       name: "cicd"
   viewsTabBar: "standard"
   jobs:
-    - script: >
-          multibranchPipelineJob('configuration-as-code') {
-          branchSources {
-                  git {
-                  id = 'configuration-as-code'
-                  remote('https://github.com/jenkinsci/configuration-as-code-plugin.git')
-                  }
-        }
+  - script: 
+        multibranchPipelineJob('configuration-as-code') {
+        branchSources {
+                git {
+                id = 'configuration-as-code'
+                remote('https://github.com/jenkinsci/configuration-as-code-plugin.git')
+                }
+      }
   }
 security:
   apiToken:
